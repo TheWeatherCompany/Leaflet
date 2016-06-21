@@ -1,5 +1,33 @@
 /*
- * L.Canvas handles Canvas vector layers rendering and mouse events handling. All Canvas-specific code goes here.
+ * @class Canvas
+ * @inherits Renderer
+ * @aka L.Canvas
+ *
+ * Allows vector layers to be displayed with [`<canvas>`](https://developer.mozilla.org/docs/Web/API/Canvas_API).
+ * Inherits `Renderer`.
+ *
+ * Due to [technical limitations](http://caniuse.com/#search=canvas), Canvas is not
+ * available in all web browsers, notably IE8, and overlapping geometries might
+ * not display properly in some edge cases.
+ *
+ * @example
+ *
+ * Use Canvas by default for all paths in the map:
+ *
+ * ```js
+ * var map = L.map('map', {
+ * 	renderer: L.canvas();
+ * });
+ * ```
+ *
+ * Use a Canvas renderer with extra padding for specific vector geometries:
+ *
+ * ```js
+ * var map = L.map('map');
+ * var myRenderer = L.canvas({ padding: 0.5 });
+ * var line = L.polyline( coordinates, { renderer: myRenderer } );
+ * var circle = L.circle( center, { renderer: myRenderer } );
+ * ```
  */
 
 L.Canvas = L.Renderer.extend({
@@ -54,6 +82,7 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_initPath: function (layer) {
+		this._updateDashArray(layer);
 		this._layers[L.stamp(layer)] = layer;
 	},
 
@@ -74,12 +103,20 @@ L.Canvas = L.Renderer.extend({
 	},
 
 	_updateStyle: function (layer) {
-
-		if (layer.options.dashArray) {
-			layer.options._dashArray = layer.options.dashArray.split(',').map(Number);
-		}
-
+		this._updateDashArray(layer);
 		this._requestRedraw(layer);
+	},
+
+	_updateDashArray: function (layer) {
+		if (layer.options.dashArray) {
+			var parts = layer.options.dashArray.split(','),
+			    dashArray = [],
+			    i;
+			for (i = 0; i < parts.length; i++) {
+				dashArray.push(Number(parts[i]));
+			}
+			layer.options._dashArray = dashArray;
+		}
 	},
 
 	_requestRedraw: function (layer) {
@@ -138,7 +175,9 @@ L.Canvas = L.Renderer.extend({
 
 		ctx.beginPath();
 
-		ctx.setLineDash(layer.options && layer.options._dashArray || []);
+		if (ctx.setLineDash) {
+			ctx.setLineDash(layer.options && layer.options._dashArray || []);
+		}
 
 		for (i = 0; i < len; i++) {
 			for (j = 0, len2 = parts[i].length; j < len2; j++) {
@@ -270,10 +309,15 @@ L.Canvas = L.Renderer.extend({
 	_bringToBack: L.Util.falseFn
 });
 
+// @namespace Browser; @property canvas: Boolean
+// `true` when the browser supports [`<canvas>`](https://developer.mozilla.org/docs/Web/API/Canvas_API).
 L.Browser.canvas = (function () {
 	return !!document.createElement('canvas').getContext;
 }());
 
+// @namespace Canvas
+// @factory L.canvas(options?: Canvas options)
+// Creates a Canvas renderer with the given options.
 L.canvas = function (options) {
 	return L.Browser.canvas ? new L.Canvas(options) : null;
 };
