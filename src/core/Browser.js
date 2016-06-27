@@ -26,6 +26,8 @@
 	    chrome    = ua.indexOf('chrome') !== -1,
 	    gecko     = ua.indexOf('gecko') !== -1  && !webkit && !window.opera && !ie,
 
+	    win = navigator.platform.indexOf('Win') === 0,
+
 	    mobile = typeof orientation !== 'undefined' || ua.indexOf('mobile') !== -1,
 	    msPointer = !window.PointerEvent && window.MSPointerEvent,
 	    pointer = window.PointerEvent || msPointer,
@@ -34,6 +36,7 @@
 	    webkit3d = ('WebKitCSSMatrix' in window) && ('m11' in new window.WebKitCSSMatrix()) && !android23,
 	    gecko3d = 'MozPerspective' in doc.style,
 	    opera12 = 'OTransition' in doc.style;
+
 
 	var touch = !window.L_NO_TOUCH && (pointer || 'ontouchstart' in window ||
 			(window.DocumentTouch && document instanceof window.DocumentTouch));
@@ -77,6 +80,11 @@
 		safari: !chrome && ua.indexOf('safari') !== -1,
 
 
+		// @property win: Boolean
+		// `true` when the browser is running in a Windows platform
+		win: win,
+
+
 		// @property ie3d: Boolean
 		// `true` for all Internet Explorer versions supporting CSS transforms.
 		ie3d: ie3d,
@@ -98,8 +106,8 @@
 		any3d: !window.L_DISABLE_3D && (ie3d || webkit3d || gecko3d) && !opera12 && !phantomjs,
 
 
-		// @property ie: Boolean
-		// `true` for all browsers running in a mobile devide.
+		// @property mobile: Boolean
+		// `true` for all browsers running in a mobile device.
 		mobile: mobile,
 
 		// @property mobileWebkit: Boolean

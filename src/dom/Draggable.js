@@ -16,6 +16,13 @@
 
 L.Draggable = L.Evented.extend({
 
+	options: {
+		// @option clickTolerance: Number = 3
+		// The max number of pixels a user can shift the mouse pointer during a click
+		// for it to be considered a valid click (as opposed to a mouse drag).
+		clickTolerance: 3
+	},
+
 	statics: {
 		START: L.Browser.touch ? ['touchstart', 'mousedown'] : ['mousedown'],
 		END: {
@@ -62,6 +69,11 @@ L.Draggable = L.Evented.extend({
 	},
 
 	_onDown: function (e) {
+		// Ignore simulated events, since we handle both touch and
+		// mouse explicitly; otherwise we risk getting duplicates of
+		// touch events, see #4315.
+		if (e._simulated) { return; }
+
 		this._moved = false;
 
 		if (L.DomUtil.hasClass(this._element, 'leaflet-zoom-anim')) { return; }
@@ -85,14 +97,18 @@ L.Draggable = L.Evented.extend({
 		var first = e.touches ? e.touches[0] : e;
 
 		this._startPoint = new L.Point(first.clientX, first.clientY);
-		this._startPos = this._newPos = L.DomUtil.getPosition(this._element);
 
 		L.DomEvent
-		    .on(document, L.Draggable.MOVE[e.type], this._onMove, this)
-		    .on(document, L.Draggable.END[e.type], this._onUp, this);
+			.on(document, L.Draggable.MOVE[e.type], this._onMove, this)
+			.on(document, L.Draggable.END[e.type], this._onUp, this);
 	},
 
 	_onMove: function (e) {
+		// Ignore simulated events, since we handle both touch and
+		// mouse explicitly; otherwise we risk getting duplicates of
+		// touch events, see #4315.
+		if (e._simulated) { return; }
+
 		if (e.touches && e.touches.length > 1) {
 			this._moved = true;
 			return;
@@ -103,7 +119,7 @@ L.Draggable = L.Evented.extend({
 		    offset = newPoint.subtract(this._startPoint);
 
 		if (!offset.x && !offset.y) { return; }
-		if (L.Browser.touch && Math.abs(offset.x) + Math.abs(offset.y) < 3) { return; }
+		if (Math.abs(offset.x) + Math.abs(offset.y) < this.options.clickTolerance) { return; }
 
 		L.DomEvent.preventDefault(e);
 
@@ -143,12 +159,17 @@ L.Draggable = L.Evented.extend({
 		this.fire('predrag', e);
 		L.DomUtil.setPosition(this._element, this._newPos);
 
-		// @event predrag: Event
+		// @event drag: Event
 		// Fired continuously during dragging.
 		this.fire('drag', e);
 	},
 
-	_onUp: function () {
+	_onUp: function (e) {
+		// Ignore simulated events, since we handle both touch and
+		// mouse explicitly; otherwise we risk getting duplicates of
+		// touch events, see #4315.
+		if (e._simulated) { return; }
+
 		L.DomUtil.removeClass(document.body, 'leaflet-dragging');
 
 		if (this._lastTarget) {
@@ -158,8 +179,8 @@ L.Draggable = L.Evented.extend({
 
 		for (var i in L.Draggable.MOVE) {
 			L.DomEvent
-			    .off(document, L.Draggable.MOVE[i], this._onMove, this)
-			    .off(document, L.Draggable.END[i], this._onUp, this);
+				.off(document, L.Draggable.MOVE[i], this._onMove, this)
+				.off(document, L.Draggable.END[i], this._onUp, this);
 		}
 
 		L.DomUtil.enableImageDrag();
@@ -169,7 +190,7 @@ L.Draggable = L.Evented.extend({
 			// ensure drag is not fired after dragend
 			L.Util.cancelAnimFrame(this._animRequest);
 
-			// @event dragend: Event
+			// @event dragend: DragEndEvent
 			// Fired when the drag ends.
 			this.fire('dragend', {
 				distance: this._newPos.distanceTo(this._startPos)

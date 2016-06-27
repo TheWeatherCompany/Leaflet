@@ -35,7 +35,6 @@ L.Map.mergeOptions({
 	// like markers and vector layers are still visible.
 	worldCopyJump: false,
 
-	// @section Interaction Options
 	// @option maxBoundsViscosity: Number = 0.0
 	// If `maxBounds` is set, this option will control how solid the bounds
 	// are when dragging the map around. The default value of `0.0` allows the
@@ -67,7 +66,7 @@ L.Map.Drag = L.Handler.extend({
 				map.whenReady(this._onZoomEnd, this);
 			}
 		}
-		L.DomUtil.addClass(this._map._container, 'leaflet-grab');
+		L.DomUtil.addClass(this._map._container, 'leaflet-grab leaflet-touch-drag');
 		this._draggable.enable();
 		this._positions = [];
 		this._times = [];
@@ -75,6 +74,7 @@ L.Map.Drag = L.Handler.extend({
 
 	removeHooks: function () {
 		L.DomUtil.removeClass(this._map._container, 'leaflet-grab');
+		L.DomUtil.removeClass(this._map._container, 'leaflet-touch-drag');
 		this._draggable.disable();
 	},
 

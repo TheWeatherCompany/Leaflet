@@ -63,7 +63,7 @@ L.Popup = L.Layer.extend({
 		// view after autopanning was performed.
 		autoPanPaddingTopLeft: null,
 
-		// @option autoPanPaddingTopLeft: Point = null
+		// @option autoPanPaddingBottomRight: Point = null
 		// The margin between the popup and the bottom right corner of the map
 		// view after autopanning was performed.
 		autoPanPaddingBottomRight: null,
@@ -415,7 +415,7 @@ L.Popup = L.Layer.extend({
 
 		// @namespace Map
 		// @section Popup events
-		// @event autopanstart
+		// @event autopanstart: Event
 		// Fired when the map starts autopanning when opening a popup.
 		if (dx || dy) {
 			map
@@ -432,7 +432,7 @@ L.Popup = L.Layer.extend({
 
 // @namespace Popup
 // @factory L.popup(options?: Popup options, source?: Layer)
-// Instantiates a Popup object given an optional `options` object that describes its appearance and location and an optional `source` object that is used to tag the popup with a reference to the Layer to which it refers.
+// Instantiates a `Popup` object given an optional `options` object that describes its appearance and location and an optional `source` object that is used to tag the popup with a reference to the Layer to which it refers.
 L.popup = function (options, source) {
 	return new L.Popup(options, source);
 };

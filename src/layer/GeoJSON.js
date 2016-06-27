@@ -45,11 +45,11 @@ L.GeoJSON = L.FeatureGroup.extend({
 	 * ```
 	 *
 	 * @option onEachFeature: Function = *
-	 * A `Function` that will be called once for each created `Layer`, after it has
+	 * A `Function` that will be called once for each created `Feature`, after it has
 	 * been created and styled. Useful for attaching events and popups to features.
 	 * The default is to do nothing with the newly created layers:
 	 * ```js
-	 * function (layer) {}
+	 * function (feature, layer) {}
 	 * ```
 	 *
 	 * @option filter: Function = *
@@ -76,6 +76,8 @@ L.GeoJSON = L.FeatureGroup.extend({
 		}
 	},
 
+	// @function addData( <GeoJSON> data ): Layer
+	// Adds a GeoJSON object to the layer.
 	addData: function (geojson) {
 		var features = L.Util.isArray(geojson) ? geojson : geojson.features,
 		    i, len, feature;
@@ -111,6 +113,8 @@ L.GeoJSON = L.FeatureGroup.extend({
 		return this.addLayer(layer);
 	},
 
+	// @function resetStyle( <Path> layer ): Layer
+	// Resets the given vector layer's style to the original GeoJSON style, useful for resetting style after hover events.
 	resetStyle: function (layer) {
 		// reset any custom styles
 		layer.options = L.Util.extend({}, layer.defaultOptions);
@@ -118,6 +122,8 @@ L.GeoJSON = L.FeatureGroup.extend({
 		return this;
 	},
 
+	// @function setStyle( <Function> style ): Layer
+	// Changes styles of GeoJSON vector layers with the given style function.
 	setStyle: function (style) {
 		return this.eachLayer(function (layer) {
 			this._setLayerStyle(layer, style);
@@ -202,7 +208,7 @@ L.extend(L.GeoJSON, {
 		return new L.LatLng(coords[1], coords[0], coords[2]);
 	},
 
-	// @function coordsToLatLngs(coords: Array, levelsDeep: Number, coordsToLatLng?: Function): Array
+	// @function coordsToLatLngs(coords: Array, levelsDeep?: Number, coordsToLatLng?: Function): Array
 	// Creates a multidimensional array of `LatLng`s from a GeoJSON coordinates array.
 	// `levelsDeep` specifies the nesting level (0 is for an array of points, 1 for an array of arrays of points, etc., 0 by default).
 	// Can use a custom [`coordsToLatLng`](#geojson-coordstolatlng) function.
@@ -228,8 +234,9 @@ L.extend(L.GeoJSON, {
 				[latlng.lng, latlng.lat];
 	},
 
-	// @function latLngsToCoords(latlngs: Array): Array
+	// @function latLngsToCoords(latlngs: Array, levelsDeep?: Number, closed?: Boolean): Array
 	// Reverse of [`coordsToLatLngs`](#geojson-coordstolatlngs)
+	// `closed` determines whether the first point should be appended to the end of the array to close the feature, only used when `levelsDeep` is 0. False by default.
 	latLngsToCoords: function (latlngs, levelsDeep, closed) {
 		var coords = [];
 

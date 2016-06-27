@@ -70,14 +70,14 @@ L.Icon = L.Class.extend({
 		L.setOptions(this, options);
 	},
 
-	// @method createIcon(oldIcon: HTMLElement|null): HTMLElement
+	// @method createIcon(oldIcon?: HTMLElement): HTMLElement
 	// Called internally when the icon has to be shown, returns a `<img>` HTML element
 	// styled according to the options.
 	createIcon: function (oldIcon) {
 		return this._createIcon('icon', oldIcon);
 	},
 
-	// @method createShadow(oldIcon: HTMLElement|null): HTMLElement
+	// @method createShadow(oldIcon?: HTMLElement): HTMLElement
 	// As `createIcon`, but for the shadow beneath it.
 	createShadow: function (oldIcon) {
 		return this._createIcon('shadow', oldIcon);
@@ -100,8 +100,14 @@ L.Icon = L.Class.extend({
 	},
 
 	_setIconStyles: function (img, name) {
-		var options = this.options,
-		    size = L.point(options[name + 'Size']),
+		var options = this.options;
+		var sizeOption = options[name + 'Size'];
+
+		if (typeof sizeOption === 'number') {
+			sizeOption = [sizeOption, sizeOption];
+		}
+
+		var size = L.point(sizeOption),
 		    anchor = L.point(name === 'shadow' && options.shadowAnchor || options.iconAnchor ||
 		            size && size.divideBy(2, true));
 

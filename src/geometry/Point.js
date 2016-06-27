@@ -90,7 +90,7 @@ L.Point.prototype = {
 		return new L.Point(this.x * point.x, this.y * point.y);
 	},
 
-	// @method unscaleBy(scale: Point)
+	// @method unscaleBy(scale: Point): Point
 	// Inverse of `scaleBy`. Divide each coordinate of the current point by
 	// each coordinate of `scale`.
 	unscaleBy: function (point) {
@@ -177,6 +177,10 @@ L.Point.prototype = {
 // @alternative
 // @factory L.point(coords: Number[])
 // Expects an array of the form `[x, y]` instead.
+
+// @alternative
+// @factory L.point(coords: Object)
+// Expects a plain object of the form `{x: Number, y: Number}` instead.
 L.point = function (x, y, round) {
 	if (x instanceof L.Point) {
 		return x;
@@ -186,6 +190,9 @@ L.point = function (x, y, round) {
 	}
 	if (x === undefined || x === null) {
 		return x;
+	}
+	if (typeof x === 'object' && 'x' in x && 'y' in x) {
+		return new L.Point(x.x, x.y);
 	}
 	return new L.Point(x, y, round);
 };

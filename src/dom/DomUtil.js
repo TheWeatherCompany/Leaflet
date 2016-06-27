@@ -38,7 +38,7 @@ L.DomUtil = {
 	create: function (tagName, className, container) {
 
 		var el = document.createElement(tagName);
-		el.className = className;
+		el.className = className || '';
 
 		if (container) {
 			container.appendChild(el);
@@ -122,8 +122,8 @@ L.DomUtil = {
 		}
 	},
 
-	// @function setClass(el: HTMLElement, name: String)
-	// Sets the element's class.
+	// @function getClass(el: HTMLElement): String
+	// Returns the element's class.
 	getClass: function (el) {
 		return el.className.baseVal === undefined ? el.className : el.className.baseVal;
 	},
