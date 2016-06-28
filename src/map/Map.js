@@ -1020,7 +1020,7 @@ L.Map = L.Evented.extend({
 
 		var target = targets[0];
 		if (type === 'contextmenu' && target.listens(type, true)) {
-			L.DomEvent.preventDefault(e);
+			// L.DomEvent.preventDefault(e);
 		}
 
 		var data = {
