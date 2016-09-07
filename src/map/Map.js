@@ -776,6 +776,9 @@ L.Map = L.Evented.extend({
 		// @pane markerPane: HTMLElement = 600
 		// Pane for `Icon`s of `Marker`s
 		this.createPane('markerPane');
+		// @pane tooltipPane: HTMLElement = 650
+		// Pane for tooltip.
+		this.createPane('tooltipPane');
 		// @pane popupPane: HTMLElement = 700
 		// Pane for `Popup`s.
 		this.createPane('popupPane');
@@ -1043,7 +1046,7 @@ L.Map = L.Evented.extend({
 	},
 
 	_draggableMoved: function (obj) {
-		obj = obj.options.draggable ? obj : this;
+		obj = obj.dragging && obj.dragging.enabled() ? obj : this;
 		return (obj.dragging && obj.dragging.moved()) || (this.boxZoom && this.boxZoom.moved());
 	},
 
