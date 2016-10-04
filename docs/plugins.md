@@ -193,6 +193,15 @@ Ready-to-go basemaps, with little or no configuration at all.
 			<a href="https://github.com/IvanSanchez">Iván Sánchez</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<a href="https://gitlab.com/IvanSanchez/Leaflet.GridLayer.GoogleMutant">L.GridLayer.GoogleMutant</a>
+		</td><td>
+			Displays Google maps (with minimal artifacts thanks to a <a href='https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver'>DOM mutation observer</a> technique) (<a href="http://ivansanchez.gitlab.io/Leaflet.GridLayer.GoogleMutant/demo.html">demo</a>).
+		</td><td>
+			<a href="https://github.com/IvanSanchez">Iván Sánchez</a>
+		</td>
+	</tr>	
 </table>
 
 
@@ -688,6 +697,15 @@ Load your own data from various GIS formats.
 			<a href="https://github.com/Flexberry/">Flexberry</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/daniellsu/leaflet-betterscale">Leaflet-BetterScale</a>
+		</td><td>
+			A new, more GIS-like scalebar with alternating black/white bars.
+		</td><td>
+			<a href="https://github.com/daniellsu/">Dan Brown</a>
+		</td>
+	</tr>
 </table>
 
 
@@ -1132,6 +1150,15 @@ These plugins provide new markers or news ways of converting abstract data into 
                         <a href="https://github.com/powerpan">Johannes Rudolph</a>
                 </td>
         </tr>
+        <tr>
+                <td>
+                        <a href="https://github.com/PowerPan/leaflet-ais-tracksymbol-search">leaflet-ais-tracksymbol-search</a>
+                </td><td>
+                        Adds a Seach Box for your Leaflet Map and Your [leaflet-ais-trackymbol](https://github.com/PowerPan/leaflet-ais-tracksymbol)
+                </td><td>
+                        <a href="https://github.com/powerpan">Johannes Rudolph</a>
+                </td>
+        </tr>
 	<tr>
 		<td>
 			<a href="https://github.com/wwwouaiebe/leaflet.marker.pin">leaflet.marker.pin</a>
@@ -1544,7 +1571,7 @@ Allows users to create, draw, edit and/or delete points, lines and polygons.
 		<td>
 			<a href="https://github.com/codeofsumit/leaflet.pm">Leaflet.PM</a>
 		</td><td>
-			Polygon Management specifically for Leaflet 1.0. Draw, Edit and listen to changes.
+			Geometry Management for Leaflet 1.0. Draw, Edit, Drag and Snap Polylines, Polygons, LayerGroups and geoJSON.
 		</td><td>
 			<a href="https://github.com/codeofsumit">Sumit Kumar</a>
 		</td>
@@ -1844,6 +1871,15 @@ Plugins that search for overlays and enhance how to display information about th
 			LeafLet marker filtering by tags
 		</td><td>
 			<a href="https://github.com/maydemirx">Mehmet Aydemir</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/Twista/leaflet-google-places-autocomplete">Leaflet-gplaces-autocomplete</a>
+		</td><td>
+			Add google places search into map
+		</td><td>
+			<a href="https://github.com/Twista">Michal Haták</a>
 		</td>
 	</tr>
 </table>
@@ -2409,6 +2445,15 @@ Allow the user to measure distances or areas.
 			Display a Scale Factor (e.g. 1:50,000) for Leaflet maps (<a href="https://marcchasse.github.io/leaflet.ScaleFactor/">Demo</a>)
 		</td><td>
 			<a href="https://github.com/MarcChasse">Marc Chasse</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/PowerPan/leaflet.nauticscale">Leaflet.nauticscale</a>
+		</td><td>
+			Display a Nauticscale on Leaflet maps
+		</td><td>
+			<a href="https://github.com/PowerPan">Johannes Rudolph</a>
 		</td>
 	</tr>
 </table>
@@ -3420,4 +3465,4 @@ Leaflet keeps it simple. If you can think of a feature that is not required by a
 
 There are no hard requirements on how to create your own plugin, but all developers are encouraged to read the recommendations in the [plugin guide](https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md).
 
-Once your plugin is ready, you can submit it to this list: just send a pull request with the addition to Leaflet repo's [gh-pages branch](https://github.com/Leaflet/Leaflet/tree/gh-pages) (`plugins.md` file).
+Once your plugin is ready, you can submit it to this list: just send a pull request with the addition to [/docs/plugins.md](https://github.com/Leaflet/Leaflet/blob/master/docs/plugins.md) to our GitHub repository.
