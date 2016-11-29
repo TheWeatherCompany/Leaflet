@@ -115,6 +115,8 @@ L.ImageOverlay = L.Layer.extend({
 
 		if (this._image) {
 			this._image.src = url;
+			this._isLoading = true;
+			this.fire('loading');
 		}
 		return this;
 	},
@@ -167,6 +169,8 @@ L.ImageOverlay = L.Layer.extend({
 		}
 
 		img.src = this._url;
+		this._isLoading = true;
+		this.fire('loading');
 		img.alt = this.options.alt;
 	},
 
