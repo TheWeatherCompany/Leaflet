@@ -1332,7 +1332,7 @@ export var Map = Evented.extend({
 
 		var target = targets[0];
 		if (type === 'contextmenu' && target.listens(type, true)) {
-			DomEvent.preventDefault(e);
+			//DomEvent.preventDefault(e);
 		}
 
 		var data = {
