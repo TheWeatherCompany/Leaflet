@@ -14,7 +14,7 @@
     "karma-firefox-launcher": "~1.0.0",
     "karma-mocha": "^1.2.0",
     "karma-phantomjs-launcher": "^1.0.2",
-    "karma-rollup-preprocessor": "^2.0.2",
+    "karma-rollup-plugin": "^0.2.4",
     "karma-safari-launcher": "~1.0.0",
     "leafdoc": "^1.4.1",
     "mocha": "^3.1.0",
@@ -35,11 +35,11 @@
     "build-jake": "jake build",
     "build": "npm run rollup && npm run replace && npm run uglify",
     "release": "./build/publish.sh",
-    "lint": "eslint src",
-    "lintfix": "eslint src --fix",
+    "lint": "eslint src; eslint spec/suites",
+    "lintfix": "eslint src --fix; eslint spec/suites --fix; ",
     "rollup": "rollup -c build/rollup-config.js",
     "watch": "rollup -w -c build/rollup-watch-config.js",
-    "uglify": "uglifyjs dist/leaflet-src.js -c -m -o dist/leaflet.js",
+    "uglify": "uglifyjs dist/leaflet-src.js -c -m -o dist/leaflet.js --source-map dist/leaflet.js.map --in-source-map dist/leaflet-src.js.map --source-map-url leaflet.js.map",
     "replace": "node ./build/replace-var.js"
   },
   "eslintConfig": {
