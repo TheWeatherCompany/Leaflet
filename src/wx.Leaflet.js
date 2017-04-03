@@ -2,7 +2,7 @@
 
 import * as _L from './Leaflet.js';
 
-const L = window.L = {};
+var L = window.L = {};
 
 for (var x in _L) {
 	L[x] = _L[x];
