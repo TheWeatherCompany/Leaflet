@@ -46,12 +46,16 @@ export var Map = Evented.extend({
 		// Initial map zoom level
 		zoom: undefined,
 
-		// @option minZoom: Number = undefined
-		// Minimum zoom level of the map. Overrides any `minZoom` option set on map layers.
+		// @option minZoom: Number = *
+		// Minimum zoom level of the map.
+		// If not specified and at least one `GridLayer` or `TileLayer` is in the map,
+		// the lowest of their `minZoom` options will be used instead.
 		minZoom: undefined,
 
-		// @option maxZoom: Number = undefined
-		// Maximum zoom level of the map. Overrides any `maxZoom` option set on map layers.
+		// @option maxZoom: Number = *
+		// Maximum zoom level of the map.
+		// If not specified and at least one `GridLayer` or `TileLayer` is in the map,
+		// the highest of their `maxZoom` options will be used instead.
 		maxZoom: undefined,
 
 		// @option layers: Layer[] = []
@@ -202,7 +206,7 @@ export var Map = Evented.extend({
 		return this;
 	},
 
-	// @method setZoom(zoom: Number, options: Zoom/pan options): this
+	// @method setZoom(zoom: Number, options?: Zoom/pan options): this
 	// Sets the zoom of the map.
 	setZoom: function (zoom, options) {
 		if (!this._loaded) {
@@ -254,6 +258,13 @@ export var Map = Evented.extend({
 		    zoom = this.getBoundsZoom(bounds, false, paddingTL.add(paddingBR));
 
 		zoom = (typeof options.maxZoom === 'number') ? Math.min(options.maxZoom, zoom) : zoom;
+
+		if (zoom === Infinity) {
+			return {
+				center: bounds.getCenter(),
+				zoom: zoom
+			};
+		}
 
 		var paddingOffset = paddingBR.subtract(paddingTL).divideBy(2),
 
@@ -721,7 +732,7 @@ export var Map = Evented.extend({
 			this._layers[i].remove();
 		}
 		for (i in this._panes) {
-			L.DomUtil.remove(this._panes[i]);
+			DomUtil.remove(this._panes[i]);
 		}
 
 		this._layers = [];
@@ -955,7 +966,7 @@ export var Map = Evented.extend({
 	// value is between -180 and +180 degrees, and the majority of the bounds
 	// overlaps the CRS's bounds.
 	wrapLatLngBounds: function (latlng) {
-		return this.options.crs.wrapLatLngBounds(L.latLngBounds(latlng));
+		return this.options.crs.wrapLatLngBounds(toLatLngBounds(latlng));
 	},
 
 	// @method distance(latlng1: LatLng, latlng2: LatLng): Number
@@ -1300,15 +1311,17 @@ export var Map = Evented.extend({
 	_handleDOMEvent: function (e) {
 		if (!this._loaded || DomEvent.skipped(e)) { return; }
 
-		var type = e.type === 'keypress' && e.keyCode === 13 ? 'click' : e.type;
+		var type = e.type;
 
-		if (type === 'mousedown') {
+		if (type === 'mousedown' || type === 'keypress') {
 			// prevents outline when clicking on keyboard-focusable element
 			DomUtil.preventOutline(e.target || e.srcElement);
 		}
 
 		this._fireDOMEvent(e, type);
 	},
+
+	_mouseEvents: ['click', 'dblclick', 'mouseover', 'mouseout', 'contextmenu'],
 
 	_fireDOMEvent: function (e, type, targets) {
 
@@ -1350,7 +1363,7 @@ export var Map = Evented.extend({
 		for (var i = 0; i < targets.length; i++) {
 			targets[i].fire(type, data, true);
 			if (data.originalEvent._stopped ||
-				(targets[i].options.nonBubblingEvents && Util.indexOf(targets[i].options.nonBubblingEvents, type) !== -1)) { return; }
+				(targets[i].options.bubblingMouseEvents === false && Util.indexOf(this._mouseEvents, type) !== -1)) { return; }
 		}
 	},
 
@@ -1538,7 +1551,7 @@ export var Map = Evented.extend({
 	},
 
 	_destroyAnimProxy: function () {
-		L.DomUtil.remove(this._proxy);
+		DomUtil.remove(this._proxy);
 		delete this._proxy;
 	},
 

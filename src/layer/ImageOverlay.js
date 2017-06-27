@@ -47,7 +47,11 @@ export var ImageOverlay = Layer.extend({
 
 		// @option zIndex: Number = 1
 		// The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the tile layer.
-		zIndex: 1
+		zIndex: 1,
+
+		// @option className: String = ''
+		// A custom class name to assign to the image. Empty by default.
+		className: '',
 	},
 
 	initialize: function (url, bounds, options) { // (String, LatLngBounds, Object)
@@ -170,14 +174,16 @@ export var ImageOverlay = Layer.extend({
 	},
 
 	// @method getElement(): HTMLElement
-	// Get the img element that represents the ImageOverlay on the map
+	// Returns the instance of [`HTMLImageElement`](https://developer.mozilla.org/docs/Web/API/HTMLImageElement)
+	// used by this overlay.
 	getElement: function () {
 		return this._image;
 	},
 
 	_initImage: function () {
 		var img = this._image = DomUtil.create('img',
-				'leaflet-image-layer ' + (this._zoomAnimated ? 'leaflet-zoom-animated' : ''));
+				'leaflet-image-layer ' + (this._zoomAnimated ? 'leaflet-zoom-animated' : '') +
+				 (this.options.className || ''));
 
 		img.onselectstart = Util.falseFn;
 		img.onmousemove = Util.falseFn;
