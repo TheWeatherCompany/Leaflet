@@ -39,7 +39,15 @@ export var ImageOverlay = Layer.extend({
 
 		// @option crossOrigin: Boolean = false
 		// If true, the image will have its crossOrigin attribute set to ''. This is needed if you want to access image pixel data.
-		crossOrigin: false
+		crossOrigin: false,
+
+		// @option errorOverlayUrl: String = ''
+		// URL to the overlay image to show in place of the overlay that failed to load.
+		errorOverlayUrl: '',
+
+		// @option zIndex: Number = 1
+		// The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the tile layer.
+		zIndex: 1
 	},
 
 	initialize: function (url, bounds, options) { // (String, LatLngBounds, Object)
@@ -147,6 +155,14 @@ export var ImageOverlay = Layer.extend({
 		return events;
 	},
 
+	// @method: setZIndex(value: Number) : this
+	// Changes the [zIndex](#imageoverlay-zindex) of the image overlay.
+	setZIndex: function (value) {
+		this.options.zIndex = value;
+		this._updateZIndex();
+		return this;
+	},
+
 	// @method getBounds(): LatLngBounds
 	// Get the bounds that this ImageOverlay covers
 	getBounds: function () {
@@ -166,10 +182,17 @@ export var ImageOverlay = Layer.extend({
 		img.onselectstart = Util.falseFn;
 		img.onmousemove = Util.falseFn;
 
+		// @event load: Event
+		// Fired when the ImageOverlay layer has loaded its image
 		img.onload = Util.bind(this.fire, this, 'load');
+		img.onerror = Util.bind(this._overlayOnError, this, 'error');
 
 		if (this.options.crossOrigin) {
 			img.crossOrigin = '';
+		}
+
+		if (this.options.zIndex) {
+			this._updateZIndex();
 		}
 
 		img.src = this._url;
@@ -200,6 +223,24 @@ export var ImageOverlay = Layer.extend({
 
 	_updateOpacity: function () {
 		DomUtil.setOpacity(this._image, this.options.opacity);
+	},
+
+	_updateZIndex: function () {
+		if (this._image && this.options.zIndex !== undefined && this.options.zIndex !== null) {
+			this._image.style.zIndex = this.options.zIndex;
+		}
+	},
+
+	_overlayOnError: function () {
+		// @event error: Event
+		// Fired when the ImageOverlay layer has loaded its image
+		this.fire('error');
+
+		var errorUrl = this.options.errorOverlayUrl;
+		if (errorUrl && this._url !== errorUrl) {
+			this._url = errorUrl;
+			this._image.src = errorUrl;
+		}
 	}
 });
 

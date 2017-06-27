@@ -77,7 +77,7 @@ While Leaflet is meant to be as lightweight as possible, and focuses on a core s
 		<h4>Integration</h4>
 		<ul>
 			<li><a href="#frameworks--build-systems">Frameworks &amp; build systems</a></li>
-			<li><a href="#suprdsup-party-integration">3<sup>rd</sup> party</a></li>
+			<li><a href="#3rd-party-integration">3<sup>rd</sup> party</a></li>
 		</ul>
 		<hr>
 		<a href="#develop-your-own">Develop your own</a>
@@ -473,6 +473,15 @@ The following plugins change the way that tile or image layers are displayed in 
 			Applies custom WebGL shaders to each tile in a tilelayer. Demos: <a href="http://ivansanchez.gitlab.io/Leaflet.TileLayer.GL/demo/demo-mandelbrot.html">Mandelbrot set</a>, <a href="http://ivansanchez.gitlab.io/Leaflet.TileLayer.GL/demo/demo-antitoner.html">manipulate tile colours</a>, <a href="http://ivansanchez.gitlab.io/Leaflet.TileLayer.GL/demo/demo-floow.html">elevation with terrain-RBG tiles</a>.
 		</td><td>
 			<a href="https://github.com/IvanSanchez">Iván Sánchez</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/frogcat/leaflet-tilelayer-colorpicker">Leaflet.TileLayer.ColorPicker</a>
+		</td><td>
+			A Leaflet TileLayer with getColor(latLng). Demos: <a href="https://frogcat.github.io/leaflet-tilelayer-colorpicker/">color picker</a>, <a href="https://frogcat.github.io/leaflet-tilelayer-colorpicker/mapbox-terrain-rgb.html">elevation picker with mapbox terrain-RGB</a>
+		</td><td>
+			<a href="https://github.com/frogcat">Yuzo Matsuzawa</a>
 		</td>
 	</tr>
 </table>
@@ -1043,11 +1052,11 @@ These plugins provide new markers or news ways of converting abstract data into 
 	</tr>
 	<tr>
 		<td>
-			<a href="https://github.com/tomaszbrue/leaflet.boatmarker">Leaflet.BoatMarker</a>
+			<a href="https://github.com/thomasbrueggemann/leaflet.boatmarker">Leaflet.BoatMarker</a>
 		</td><td>
-			A boat marker using HTML Canvas for displaying yachts and sailboats with heading and wind information. <a href="http://thomasbrueggemann.github.io/leaflet.boatmarker/">Demo</a>.
+			A boat marker using HTML Canvas for displaying yachts and sailboats with heading and optional wind information. <a href="http://thomasbrueggemann.github.io/leaflet.boatmarker/">Demo</a>.
 		</td><td>
-			<a href="https://github.com/tomaszbrue">Thomas Brüggemann</a>
+			<a href="https://github.com/thomasbrueggemann">Thomas Brüggemann</a>
 		</td>
 	</tr>
 	<tr>
@@ -1311,6 +1320,17 @@ These plugins provide new markers or news ways of converting abstract data into 
 		</td>
 		<td>
 			<a href="https://github.com/brandonxiang">Brandon Xiang</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/nypl-spacetime/Leaflet.GeotagPhoto">Leaflet.GeotagPhoto</a>
+		</td>
+		<td>
+			Plugin for photo geotagging, with two modes: camera and crosshair (<a href="http://spacetime.nypl.org/Leaflet.GeotagPhoto/examples/camera.html">Demo</a>).
+		</td>
+		<td>
+			<a href="https://github.com/bertspaan">Bert Spaan</a>
 		</td>
 	</tr>
 </table>
@@ -1904,6 +1924,17 @@ Plugins that search for overlays and enhance how to display information about th
 		</td>
 	</tr>
 	<tr>
+        	<td>
+            		<a href="https://github.com/8to5Developer/leaflet-custom-searchbox">leaflet-custom-searchbox</a>
+        	</td>
+		<td>
+            		A google map style search box which includes a side panel slider control.
+        	</td>
+		<td>
+		        <a href="https://github.com/8to5Developer/">A.D</a> 
+			</td>
+          </tr>
+	<tr>
 		<td>
 			<a href="http://erictheise.github.com/rrose">Leaflet.Rrose</a>
 		</td><td>
@@ -1972,7 +2003,7 @@ Plugins that search for overlays and enhance how to display information about th
 		<td>
 			<a href="https://github.com/yafred/leaflet-responsive-popup">leaflet-responsive-popup</a>
 		</td><td>
-			Removes the need to move the map to be able to see the content of the popup. 
+			Removes the need to move the map to be able to see the content of the popup.
 		</td><td>
 			<a href="https://github.com/yafred">YaFred</a>
 		</td>
@@ -2206,7 +2237,15 @@ Change the way the user can interactively move around the map.
 			<a href="http://www.kartena.se/">Kartena</a>
 		</td>
 	</tr>
-
+	<tr>
+		<td>
+			<a href="https://github.com/flaviocarmo/Leaflet.zoominfo/">Leaflet.zoominfo</a>
+		</td><td>
+			A zoom control which displays the current zoom level.
+		</td><td>
+			<a href="https://github.com/flaviocarmo">Flávio Carmo</a>
+		</td>
+	</tr>
 	<tr>
 		<td>
 			<a href="https://github.com/slara/Leaflet.BorderPan">Leaflet.BorderPan</a>
@@ -2504,6 +2543,15 @@ Allow the user to measure distances or areas.
 <table class="plugins"><tr><th>Plugin</th><th>Description</th><th>Maintainer</th></tr>
 	<tr>
 		<td>
+			<a href="https://github.com/ppete2/Leaflet.PolylineMeasure">Leaflet.PolylineMeasure</a>
+		</td><td>
+			 Measure distances of simple lines as well as of complex polylines. <a href="https://ppete2.github.io/Leaflet.PolylineMeasure/demo_metric.html">(Demo metric)</a>, <a href="https://ppete2.github.io/Leaflet.PolylineMeasure/demo_imperial.html">(Demo imperial)</a>
+		</td><td>
+			<a href="https://github.com/ppete2">PPete</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
 			<a href="https://github.com/makinacorpus/Leaflet.MeasureControl">Leaflet.MeasureControl</a>
 		</td><td>
 			A simple tool to measure distances on maps (*relies on Leaflet.Draw*).
@@ -2790,6 +2838,15 @@ These plugins extend Leaflet event handling.
 			Makes it easy to touch vector overlays with thick fingers on a small display by adding a transparent, larger touch surface
 		</td><td>
 			<a href="https://github.com/perliedman">Per Liedman</a> / <a href="http://prominentedge.com/">Prominent Edge</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/geoloep/Leaflet.ClickTolerance">Leaflet.ClickTolerance</a>
+		</td><td>
+			This plugin allows you to increase the click tolerance of canvas powered layers, making it possible to increase the clickable area of vector layers beyond their visible extent. Useful when your features are difficult to click otherwise.
+		</td><td>
+			<a href="https://github.com/geoloep">Geoloep</a>
 		</td>
 	</tr>
 </table>
@@ -3248,7 +3305,7 @@ The following plugins use external services to calculate driving or walking rout
 			<a href="http://www.nearest.place/">Nearest!</a>
 		</td>
 	</tr>
-	
+
 	<tr>
     		<td>
     			<a href="https://github.com/BKGiser/Leaflet.Routing.Amap">Leaflet.Routing.Amap</a>

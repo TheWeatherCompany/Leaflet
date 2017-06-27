@@ -27,10 +27,11 @@ const banner = `/*
  */`;
 
 export default {
-	format: 'umd',
-	moduleName: 'L',
+	format: 'iife',
+	//moduleName: 'wx.leaflet',
+	context: 'window',
 	banner: banner,
-	entry: 'src/Leaflet.js',
+	entry: 'src/wx.Leaflet.js',
 	dest: 'dist/leaflet-src.js',
 	plugins: [
 		release ? json() : rollupGitVersion(),

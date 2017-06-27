@@ -295,7 +295,7 @@ export var Map = Evented.extend({
 		return this.setView(center, this._zoom, {pan: options});
 	},
 
-	// @method panBy(offset: Point): this
+	// @method panBy(offset: Point, options?: Pan options): this
 	// Pans the map by a given number of pixels (animated).
 	panBy: function (offset, options) {
 		offset = toPoint(offset).round();
@@ -1332,7 +1332,7 @@ export var Map = Evented.extend({
 
 		var target = targets[0];
 		if (type === 'contextmenu' && target.listens(type, true)) {
-			DomEvent.preventDefault(e);
+			//DomEvent.preventDefault(e);
 		}
 
 		var data = {

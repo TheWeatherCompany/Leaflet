@@ -100,7 +100,17 @@ export var Layers = Control.extend({
 		this._map = map;
 		map.on('zoomend', this._checkDisabledLayers, this);
 
+		for (var i = 0; i < this._layers.length; i++) {
+			this._layers[i].layer.on('add remove', this._onLayerChange, this);
+		}
+
 		return this._container;
+	},
+
+	addTo: function (map) {
+		L.Control.prototype.addTo.call(this, map);
+		// Trigger expand after Layers Control has been inserted into DOM so that is now has an actual height.
+		return this._expandIfNotCollapsed();
 	},
 
 	onRemove: function () {
@@ -223,7 +233,9 @@ export var Layers = Control.extend({
 	},
 
 	_addLayer: function (layer, name, overlay) {
-		layer.on('add remove', this._onLayerChange, this);
+		if (this._map) {
+			layer.on('add remove', this._onLayerChange, this);
+		}
 
 		this._layers.push({
 			layer: layer,
@@ -241,6 +253,8 @@ export var Layers = Control.extend({
 			this._lastZIndex++;
 			layer.setZIndex(this._lastZIndex);
 		}
+
+		this._expandIfNotCollapsed();
 	},
 
 	_update: function () {
@@ -390,6 +404,13 @@ export var Layers = Control.extend({
 			                 (layer.options.maxZoom !== undefined && zoom > layer.options.maxZoom);
 
 		}
+	},
+
+	_expandIfNotCollapsed: function () {
+		if (this._map && !this.options.collapsed) {
+			this.expand();
+		}
+		return this;
 	},
 
 	_expand: function () {
