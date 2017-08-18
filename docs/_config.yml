@@ -5,15 +5,18 @@ markdown: kramdown
 kramdown:
   entity_output: as_input
 
-latest_leaflet_version: 1.1.0
+latest_leaflet_version: 1.2.0
 
 gems:
+  - jekyll-redirect-from
+  
+whitelist:
   - jekyll-redirect-from
 
 # Integrity hashes for both leaflet.js and leaflet-src.js
 # These will be shown in the downloads page
 # See https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity
-integrity_hash_css: "sha512-QLOGIBS0fCtMDzLMgFhdhbBxqyHn+FTO2jjV2GEZ49YCrpMOEHbteO47fUcAjW84qDG/maYxyQiX1clluOJdGg=="
-integrity_hash_source: "sha512-8CpRRKFEbFl8tGemASnYC2fgLfEGXOFES58l5m5A6Gzi9xj61IBtwXNtwqDOvt4nQBXDwtmlt53nc9KNndq7Hw=="
-integrity_hash_uglified: "sha512-j5E8LoWnh7maKEympV7UZK2+ky6Q7XRaHuxoCVA3hgKmCeyeeXLs2aEeMOyYP940auy10jy4Xogt5Jp6r4SYfA=="
 
+integrity_hash_css: "sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
+integrity_hash_source: "sha512-YLT+I34kEPlk5OqR5XObf40B7sInrIU+bGe5VcwSpfR5OrFVjExFxfhVoJQEPZQWMyB53o3AU/bb5J91nc8CPA=="
+integrity_hash_uglified: "sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="

@@ -70,6 +70,8 @@ export function off(obj, types, fn, context) {
 		}
 		delete obj[eventsKey];
 	}
+
+	return this;
 }
 
 function addOne(obj, type, fn, context) {
@@ -134,7 +136,8 @@ function removeOne(obj, type, fn, context) {
 	if (Browser.pointer && type.indexOf('touch') === 0) {
 		removePointerListener(obj, type, id);
 
-	} else if (Browser.touch && (type === 'dblclick') && removeDoubleTapListener) {
+	} else if (Browser.touch && (type === 'dblclick') && removeDoubleTapListener &&
+	           !(Browser.pointer && Browser.chrome)) {
 		removeDoubleTapListener(obj, id);
 
 	} else if ('removeEventListener' in obj) {
@@ -179,7 +182,8 @@ export function stopPropagation(e) {
 // @function disableScrollPropagation(el: HTMLElement): this
 // Adds `stopPropagation` to the element's `'mousewheel'` events (plus browser variants).
 export function disableScrollPropagation(el) {
-	return addOne(el, 'mousewheel', stopPropagation);
+	addOne(el, 'mousewheel', stopPropagation);
+	return this;
 }
 
 // @function disableClickPropagation(el: HTMLElement): this

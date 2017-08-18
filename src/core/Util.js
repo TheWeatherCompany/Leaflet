@@ -4,6 +4,9 @@
  * Various utility functions, used by Leaflet internally.
  */
 
+export var freeze = Object.freeze;
+Object.freeze = function (obj) { return obj; };
+
 // @function extend(dest: Object, src?: Object): Object
 // Merges the properties of the `src` object (or multiple objects) into `dest` object and returns the latter. Has an `L.extend` shortcut.
 export function extend(dest) {
@@ -50,7 +53,7 @@ export function bind(fn, obj) {
 export var lastId = 0;
 
 // @function stamp(obj: Object): Number
-// Returns the unique ID of an object, assiging it one if it doesn't have it.
+// Returns the unique ID of an object, assigning it one if it doesn't have it.
 export function stamp(obj) {
 	/*eslint-disable */
 	obj._leaflet_id = obj._leaflet_id || ++lastId;
