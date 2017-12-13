@@ -32,7 +32,7 @@ so please read the changelog carefully when upgrading to it.
 
 ### Using a Hosted Version of Leaflet
 
-The latest stable Leaflet release is hosted on a CDN &mdash; to start using
+The latest stable Leaflet release is available on several CDN's &mdash; to start using
 it straight away, place this in the `head` of your HTML code:
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@{{ site.latest_leaflet_version}}/dist/leaflet.css" />
@@ -48,6 +48,10 @@ when using Leaflet from a CDN:
     <script src="https://unpkg.com/leaflet@{{ site.latest_leaflet_version}}/dist/leaflet.js"
       integrity="{{site.integrity_hash_uglified}}"
       crossorigin=""></script>
+
+Leaflet is available on the following free CDN's:  [unpkg](https://unpkg.com/leaflet/dist/), [cdnjs](https://cdnjs.com/libraries/leaflet), [jsDelivr](https://www.jsdelivr.com/package/npm/leaflet?path=dist)
+
+_Disclaimer: these services are external to Leaflet; for questions or support, please contact them directly._
 
 ### Using a Downloaded Version of Leaflet
 
@@ -86,10 +90,9 @@ Here are the steps to set it up:
 
  1. [Download and install Node](http://nodejs.org)
  2. Run the following commands in the command line:
+ <pre><code>npm install</code></pre>
 
- <pre><code>npm install -g jake
-npm install</code></pre>
-
-Now that you have everything installed, run `jake build` inside the Leaflet directory.
+Now that you have everything installed, from inside the Leaflet directory, run:
+<pre><code>npm run build</code></pre>
 This will combine and compress the Leaflet source files, saving the build to the `dist` folder.
 
