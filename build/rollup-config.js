@@ -28,7 +28,7 @@ export default {
 	output: {
 		file: 'dist/leaflet-src.js',
 		format: 'umd',
-	name: 'L',
+		name: 'L',
 		banner: banner,
 		sourcemap: true
 	},

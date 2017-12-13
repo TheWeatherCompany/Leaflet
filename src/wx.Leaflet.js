@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 import * as _L from './Leaflet.js';
 
@@ -34,10 +34,10 @@ SOFTWARE.
 ============================================================================== */
 
 
-(function() {
+(function () {
 	// save these original methods before they are overwritten
-	var proto_initIcon = L.Marker.prototype._initIcon;
-	var proto_setPos = L.Marker.prototype._setPos;
+	var protoInitIcon = L.Marker.prototype._initIcon;
+	var protoSetPos = L.Marker.prototype._setPos;
 
 	var oldIE = (L.DomUtil.TRANSFORM === 'msTransform');
 
@@ -47,28 +47,28 @@ SOFTWARE.
 		if (iconAnchor) {
 			iconAnchor = (iconAnchor[0] + 'px ' + iconAnchor[1] + 'px');
 		}
-		this.options.rotationOrigin = this.options.rotationOrigin || iconAnchor || 'center bottom' ;
+		this.options.rotationOrigin = this.options.rotationOrigin || iconAnchor || 'center bottom';
 		this.options.rotationAngle = this.options.rotationAngle || 0;
 
 		// Ensure marker keeps rotated during dragging
-		this.on('drag', function(e) { e.target._applyRotation(); });
+		this.on('drag', function (e) { e.target._applyRotation(); });
 	});
 
 	L.Marker.include({
-		_initIcon: function() {
-			proto_initIcon.call(this);
+		_initIcon: function () {
+			protoInitIcon.call(this);
 		},
 
 		_setPos: function (pos) {
-			proto_setPos.call(this, pos);
+			protoSetPos.call(this, pos);
 			this._applyRotation();
 		},
 
 		_applyRotation: function () {
-			if(this.options.rotationAngle) {
-				this._icon.style[L.DomUtil.TRANSFORM+'Origin'] = this.options.rotationOrigin;
+			if (this.options.rotationAngle) {
+				this._icon.style[L.DomUtil.TRANSFORM + 'Origin'] = this.options.rotationOrigin;
 
-				if(oldIE) {
+				if (oldIE) {
 					// for IE 9, use the 2D rotation
 					this._icon.style[L.DomUtil.TRANSFORM] = 'rotate(' + this.options.rotationAngle + 'deg)';
 				} else {
@@ -78,13 +78,13 @@ SOFTWARE.
 			}
 		},
 
-		setRotationAngle: function(angle) {
+		setRotationAngle: function (angle) {
 			this.options.rotationAngle = angle;
 			this.update();
 			return this;
 		},
 
-		setRotationOrigin: function(origin) {
+		setRotationOrigin: function (origin) {
 			this.options.rotationOrigin = origin;
 			this.update();
 			return this;

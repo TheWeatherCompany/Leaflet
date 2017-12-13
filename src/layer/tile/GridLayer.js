@@ -320,7 +320,7 @@ export var GridLayer = Layer.extend({
 			if (!tile.current || !tile.loaded) { continue; }
 
 			var fade = Math.min(1, (now - tile.loaded) / 200);
-            fade = 1;
+			fade = 1;
 			DomUtil.setOpacity(tile.el, fade);
 			if (fade < 1) {
 				nextFrame = true;
