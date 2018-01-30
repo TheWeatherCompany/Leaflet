@@ -896,6 +896,14 @@ Load dynamic data which is updated in the map, or load GIS vector data in non-st
 			<a href="https://github.com/BenjaminVadant/">Benjamin VADANT</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/dj0001/Leaflet.mytrack">Leaflet.mytrack</a>
+		</td><td>Track my way on a map and download it. <a href="https://dj0001.github.io/Leaflet.mytrack">Demo</a>
+		</td><td>
+			<a href="https://github.com/dj0001">DJ</a>
+		</td>
+	</tr>
 </table>
 
 
@@ -938,6 +946,22 @@ These plugins create useful overlays from scratch, no loading required.
 		</td><td>Overlay day and night regions on a map.
 		</td><td>
 			<a href="https://github.com/joergdietrich">J&ouml;rg Dietrich</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/dj0001/Leaflet.Sun">Leaflet.Sun</a>
+		</td><td>Get sunset or sunrise at map click. <a href="https://dj0001.github.io/Leaflet.Sun">Demo</a>
+		</td><td>
+			<a href="https://github.com/dj0001">DJ</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/dj0001/Leaflet.timezones">Leaflet.timezones</a>
+		</td><td>Overlay timezones on a Leaflet Earth map. <a href="https://dj0001.github.io/Leaflet.timezones">Demo</a>
+		</td><td>
+			<a href="https://github.com/dj0001">DJ</a>
 		</td>
 	</tr>
 	<tr>
@@ -1488,6 +1512,39 @@ These plugins provide new markers or news ways of converting abstract data into 
 		</td>
 		<td>
 			<a href="https://webkid.io">webkid</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/Oliv/leaflet-polycolor">leaflet-polycolor</a>
+		</td>
+		<td>
+			Color each polyline segment. (<a href='https://oliv.github.io/leaflet-polycolor/'>demo</a>)
+		</td>
+		<td>
+			<a href="https://github.com/Oliv">Olivier Gasc</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/JackZouShao/leaflet-marker-direction">leaflet-marker-direction</a>
+		</td>
+		<td>
+			display the path and the direction of the marker. (<a href='https://jackzoushao.github.io/leaflet-marker-direction/examples/marker-direction.html'>demo</a>)
+		</td>
+		<td>
+			<a href="https://github.com/JackZouShao">Jack Zou</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/bbecquet/Leaflet.RotatedMarker">Leaflet Rotated Marker</a>
+		</td>
+		<td>
+			Enables rotation of marker icons in Leaflet. (<a href='http://bbecquet.github.io/Leaflet.RotatedMarker/example.html'>Demo</a>)
+		</td>
+		<td>
+			<a href="https://github.com/bbecquet">Benjamin Becquet</a>
 		</td>
 	</tr>
 </table>
@@ -3352,6 +3409,17 @@ Buttons, sliders, toolbars, sidebars, and panels.
 			<a href="https://github.com/ka7eh">Kaveh Karimi</a>
 		</td>
 	</tr>
+	<tr>
+		<td>
+			<a href="https://github.com/publiclab/leaflet-blurred-location/">leaflet-blurred-image</a>
+		</td>
+		<td>
+			A Leaflet-based interface for selecting a "blurred" or low-resolution location, to preserve privacy. <a href="https://publiclab.github.io/leaflet-blurred-location/examples/">Demo</a>.
+		</td>
+		<td>
+			<a href="https://github.com/publiclab">Public Lab</a>
+		</td>
+	</tr>
 </table>
 
 
@@ -3623,6 +3691,18 @@ The following plugins use external services to calculate driving or walking rout
     			<a href="https://github.com/BKGiser">Jack Good</a>
     		</td>
     	</tr>
+    <tr>
+    	<td>
+    		<a href="https://github.com/skedgo/leaflet.tripgo.routing">Leaflet TripGo routing</a>
+    	</td>
+    	<td>
+    		The <b>TripGo</b> mobility platform let’s you create apps providing seamless and personalised door-to-door trips using any public, private or commercial mode of transport.
+    		TripGo leaflet's plugin motivation is to provide an easy way to include it's functionality in an external platform.
+    	</td>
+    	<td>
+    		<a href="http://skedgo.com/">SkedGo</a>
+    	</td>
+    </tr>
 </table>
 
 

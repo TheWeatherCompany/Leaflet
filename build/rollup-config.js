@@ -24,11 +24,12 @@ const banner = `/* @preserve
 `;
 
 export default {
-	input: 'src/Leaflet.js',
+	input: 'src/wx.Leaflet.js',
 	output: {
 		file: 'dist/leaflet-src.js',
 		format: 'umd',
 		name: 'L',
+		moduleName: 'L',
 		banner: banner,
 		sourcemap: true
 	},
