@@ -960,6 +960,7 @@ export var Map = Evented.extend({
 	// Given a geographical coordinate, returns the corresponding pixel coordinate
 	// relative to the [origin pixel](#map-getpixelorigin).
 	latLngToLayerPoint: function (latlng, round) {
+		round = (round === undefined) ? true : round;
 		var projectedPoint = this.project(toLatLng(latlng));
 		projectedPoint = round ? projectedPoint._round() : projectedPoint;
 		return projectedPoint._subtract(this.getPixelOrigin());
