@@ -959,8 +959,9 @@ export var Map = Evented.extend({
 	// @method latLngToLayerPoint(latlng: LatLng): Point
 	// Given a geographical coordinate, returns the corresponding pixel coordinate
 	// relative to the [origin pixel](#map-getpixelorigin).
-	latLngToLayerPoint: function (latlng) {
-		var projectedPoint = this.project(toLatLng(latlng))._round();
+	latLngToLayerPoint: function (latlng, round = true) {
+		var projectedPoint = this.project(toLatLng(latlng));
+		projectedPoint = round ? projectedPoint._round() : projectedPoint;
 		return projectedPoint._subtract(this.getPixelOrigin());
 	},
 
@@ -1016,8 +1017,8 @@ export var Map = Evented.extend({
 	// @method latLngToContainerPoint(latlng: LatLng): Point
 	// Given a geographical coordinate, returns the corresponding pixel coordinate
 	// relative to the map container.
-	latLngToContainerPoint: function (latlng) {
-		return this.layerPointToContainerPoint(this.latLngToLayerPoint(toLatLng(latlng)));
+	latLngToContainerPoint: function (latlng, round = true) {
+		return this.layerPointToContainerPoint(this.latLngToLayerPoint(toLatLng(latlng), round));
 	},
 
 	// @method mouseEventToContainerPoint(ev: MouseEvent): Point
@@ -1456,8 +1457,8 @@ export var Map = Evented.extend({
 	},
 
 	// offset of the specified place to the current center in pixels
-	_getCenterOffset: function (latlng) {
-		return this.latLngToLayerPoint(latlng).subtract(this._getCenterLayerPoint());
+	_getCenterOffset: function (latlng, round = true) {
+		return this.latLngToLayerPoint(latlng, round).subtract(this._getCenterLayerPoint());
 	},
 
 	// adjust center for view to get inside bounds
