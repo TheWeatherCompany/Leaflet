@@ -1,5 +1,14 @@
 var json = require('rollup-plugin-json');
 
+const outro = `var oldL = window.L;
+exports.noConflict = function() {
+	window.L = oldL;
+	return this;
+}
+
+// Always export us to window global (see #2364)
+window.L = exports;`;
+
 // Karma configuration
 module.exports = function (config) {
 
@@ -15,6 +24,14 @@ module.exports = function (config) {
 		"dist/*.css",
 		{pattern: "dist/images/*.png", included: false, serve: true}
 	];
+
+	var preprocessors = {};
+
+	if (config.cov) {
+		preprocessors['src/**/*.js'] = ['coverage'];
+	}
+
+	preprocessors['src/Leaflet.js'] = ['rollup'];
 
 	config.set({
 		// base path, that will be used to resolve files and exclude
@@ -42,20 +59,21 @@ module.exports = function (config) {
 		exclude: [],
 
 		// Rollup the ES6 Leaflet sources into just one file, before tests
-		preprocessors: {
-			'src/Leaflet.js': ['rollup']
-		},
+		preprocessors: preprocessors,
 		rollupPreprocessor: {
 			plugins: [
 				json()
 			],
 			format: 'umd',
-			name: 'L'
+			name: 'L',
+			outro: outro
 		},
 
 		// test results reporter to use
 		// possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
-		reporters: ['dots'],
+		reporters: config.cov ? ['dots', 'coverage'] : ['dots'],
+
+		coverageReporter: config.cov ? {type : 'html', dir : 'coverage/'} : null,
 
 		// web server port
 		port: 9876,

@@ -161,9 +161,11 @@ export var Canvas = Renderer.extend({
 			this._drawFirst = next;
 		}
 
+		delete this._drawnLayers[layer._leaflet_id];
+
 		delete layer._order;
 
-		delete this._layers[L.stamp(layer)];
+		delete this._layers[Util.stamp(layer)];
 
 		this._requestRedraw(layer);
 	},
@@ -185,14 +187,16 @@ export var Canvas = Renderer.extend({
 	},
 
 	_updateDashArray: function (layer) {
-		if (layer.options.dashArray) {
-			var parts = layer.options.dashArray.split(','),
+		if (typeof layer.options.dashArray === 'string') {
+			var parts = layer.options.dashArray.split(/[, ]+/),
 			    dashArray = [],
 			    i;
 			for (i = 0; i < parts.length; i++) {
 				dashArray.push(Number(parts[i]));
 			}
 			layer.options._dashArray = dashArray;
+		} else {
+			layer.options._dashArray = layer.options.dashArray;
 		}
 	},
 

@@ -14,7 +14,7 @@ import * as DomUtil from '../../dom/DomUtil';
  * @example
  *
  * ```js
- * L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(map);
+ * L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar'}).addTo(map);
  * ```
  *
  * @section URL template
@@ -235,6 +235,28 @@ export var TileLayer = GridLayer.extend({
 				}
 			}
 		}
+	},
+
+	_removeTile: function (key) {
+		var tile = this._tiles[key];
+		if (!tile) { return; }
+
+		// Cancels any pending http requests associated with the tile
+		// unless we're on Android's stock browser,
+		// see https://github.com/Leaflet/Leaflet/issues/137
+		if (!Browser.androidStock) {
+			tile.el.setAttribute('src', Util.emptyImageUrl);
+		}
+
+		return GridLayer.prototype._removeTile.call(this, key);
+	},
+
+	_tileReady: function (coords, err, tile) {
+		if (!this._map || (tile && tile.getAttribute('src') === Util.emptyImageUrl)) {
+			return;
+		}
+
+		return GridLayer.prototype._tileReady.call(this, coords, err, tile);
 	}
 });
 

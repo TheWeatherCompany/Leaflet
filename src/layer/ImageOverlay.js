@@ -48,12 +48,12 @@ export var ImageOverlay = Layer.extend({
 		errorOverlayUrl: '',
 
 		// @option zIndex: Number = 1
-		// The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the tile layer.
+		// The explicit [zIndex](https://developer.mozilla.org/docs/Web/CSS/CSS_Positioning/Understanding_z_index) of the overlay layer.
 		zIndex: 1,
 
 		// @option className: String = ''
 		// A custom class name to assign to the image. Empty by default.
-		className: '',
+		className: ''
 	},
 
 	initialize: function (url, bounds, options) { // (String, LatLngBounds, Object)
@@ -161,7 +161,7 @@ export var ImageOverlay = Layer.extend({
 		return events;
 	},
 
-	// @method: setZIndex(value: Number) : this
+	// @method setZIndex(value: Number): this
 	// Changes the [zIndex](#imageoverlay-zindex) of the image overlay.
 	setZIndex: function (value) {
 		this.options.zIndex = value;
@@ -249,7 +249,7 @@ export var ImageOverlay = Layer.extend({
 
 	_overlayOnError: function () {
 		// @event error: Event
-		// Fired when the ImageOverlay layer has loaded its image
+		// Fired when the ImageOverlay layer fails to load its image
 		this.fire('error');
 
 		var errorUrl = this.options.errorOverlayUrl;

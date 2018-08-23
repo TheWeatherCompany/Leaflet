@@ -25,11 +25,12 @@ export * from './map/index';
 
 // misc
 
-var oldL = window.L;
-export function noConflict() {
-	window.L = oldL;
-	return this;
-}
+// 8/23/2018 - added to outro in rollup.config
+// var oldL = window.L;
+// export function noConflict() {
+// 	window.L = oldL;
+// 	return this;
+// }
 
 // Always export us to window global (see #2364)
 // window.L = exports;
