@@ -1,6 +1,6 @@
 {
   "name": "@twc/mosaic-leaflet",
-  "version": "1.4.0",
+  "version": "1.4.2",
   "description": "JavaScript library for mobile-friendly interactive maps - upstream v1.3.4",
   "devDependencies": {
     "eslint": "^4.5.0",
