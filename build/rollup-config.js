@@ -34,10 +34,19 @@ exports.noConflict = function() {
 window.L = exports;`;
 
 export default {
+	// input: 'src/wx.Leaflet.js',
 	input: 'src/Leaflet.js',
 	output: [
 		{
 			file: pkg.main,
+			format: 'umd',
+			name: 'L',
+			banner: banner,
+			outro: outro,
+			sourcemap: true
+		},
+		{
+			file: 'dist/leaflet-src.js',
 			format: 'umd',
 			name: 'L',
 			banner: banner,

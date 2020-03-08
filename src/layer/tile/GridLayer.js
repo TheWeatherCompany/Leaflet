@@ -320,7 +320,7 @@ export var GridLayer = Layer.extend({
 			if (!tile.current || !tile.loaded) { continue; }
 
 			var fade = Math.min(1, (now - tile.loaded) / 200);
-
+			fade = 1;
 			DomUtil.setOpacity(tile.el, fade);
 			if (fade < 1) {
 				nextFrame = true;
@@ -767,8 +767,8 @@ export var GridLayer = Layer.extend({
 	_removeTile: function (key) {
 		var tile = this._tiles[key];
 		if (!tile) { return; }
-
 		DomUtil.remove(tile.el);
+
 
 		delete this._tiles[key];
 

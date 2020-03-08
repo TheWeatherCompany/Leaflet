@@ -230,14 +230,14 @@
 	cursor:         grabbing;
 	}
 
-/* marker & overlays interactivity */
-.leaflet-marker-icon,
-.leaflet-marker-shadow,
-.leaflet-image-layer,
-.leaflet-pane > svg path,
-.leaflet-tile-container {
-	pointer-events: none;
-	}
+/* marker & overlays interactivity
+/*.leaflet-marker-icon,*/
+/*.leaflet-marker-shadow,*/
+/*.leaflet-image-layer,*/
+/*.leaflet-pane > svg path,*/
+/*.leaflet-tile-container {*/
+	/*pointer-events: none;*/
+/*}*/
 
 .leaflet-marker-icon.leaflet-interactive,
 .leaflet-image-layer.leaflet-interactive,
@@ -331,7 +331,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-	font: bold 18px 'Lucida Console', Monaco, monospace;
+	font: bold 18px "Lucida Console", Monaco, monospace;
 	text-indent: 1px;
 	}
 
@@ -556,8 +556,8 @@ svg.leaflet-image-layer.leaflet-interactive path {
 /* div icon */
 
 .leaflet-div-icon {
-	background: #fff;
-	border: 1px solid #666;
+	background: none;
+	border: none;
 	}
 
 

@@ -296,7 +296,8 @@ export var Marker = Layer.extend({
 			DomUtil.setPosition(this._shadow, pos);
 		}
 
-		this._zIndex = pos.y + this.options.zIndexOffset;
+		// this._zIndex = pos.y + this.options.zIndexOffset;
+		this._zIndex = 500 + this.options.zIndexOffset;
 
 		this._resetZIndex();
 	},

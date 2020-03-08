@@ -15,6 +15,7 @@ import {svgCreate} from '../layer/vector/SVG.Util';
  * }
  * ```
  */
+export var isTouching = false;
 
 var style = document.documentElement.style;
 
