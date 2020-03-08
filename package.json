@@ -1,8 +1,9 @@
 {
-  "name": "leaflet",
-  "version": "1.6.0",
+  "name": "@twc/pangea-leaflet",
   "homepage": "https://leafletjs.com/",
   "description": "JavaScript library for mobile-friendly interactive maps",
+  "version": "1.1.0",
+  "upstreamVersion": "1.6.0",
   "devDependencies": {
     "eslint": "^4.19.1",
     "eslint-config-mourner": "^2.0.1",

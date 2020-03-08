@@ -3,7 +3,7 @@
 
 var ssri = require('ssri');
 var fs   = require('fs');
-var version = require('../package.json').version;
+var version = require('../package.json').upstreaVersion;
 
 const integritySrc = ssri.fromData(fs.readFileSync('dist/leaflet-src.js'));
 const integrityUglified = ssri.fromData(fs.readFileSync('dist/leaflet.js'));

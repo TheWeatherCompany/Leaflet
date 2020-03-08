@@ -6,7 +6,7 @@ import gitRev from 'git-rev-sync'
 
 const branch = gitRev.branch();
 const rev = gitRev.short();
-const version = require('../package.json').version + '+' + branch + '.' + rev;
+const version = require('../package.json').upstreamVersion + '+' + branch + '.' + rev;
 const banner = `/* @preserve
  * Leaflet ${version}, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2019 Vladimir Agafonkin, (c) 2010-2011 CloudMade
